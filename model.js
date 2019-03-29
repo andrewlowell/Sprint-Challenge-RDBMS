@@ -13,7 +13,7 @@ function addProject(project) {
 }
 function addAction(action) {
   return db('actions')
-    .insert(project);
+    .insert(action);
 }
 function getProject(id) {
   return db('projects')
