@@ -33,9 +33,20 @@ This will be akin to the Web API that you built in the last sprint, only this ti
 Demonstrate your understanding of this week's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
 1. Explain the difference between `RDBMS` and `SQL`.
-1. Why do tables need a `primary key`?
-1. What is the name given to a table column that references the primary key on another table.
-1. What do we need in order to have a _many to many_ relationship between two tables.
+
+  RDBMS is a name for any software system that we use to manage a relational database. It includes the basic structure of a relational database like tables with rows and columns, indexes, primary keys, and views. SQL is a structured query language that is used to interact with a RDBMS, a set of commands that allow us to tell a relational database to perform different functions. SQL is a standard, whereas RDBMS systems can be different from each other and support different features depending on the vendor.
+
+2. Why do tables need a `primary key`?
+
+  Tables need primary keys so that individual records in the table can be uniquely identified and looked up, especially if records have some data in common with other records.
+
+3. What is the name given to a table column that references the primary key on another table.
+
+  Foreign key.
+
+4. What do we need in order to have a _many to many_ relationship between two tables.
+
+  We need to have a join table, a separate table that contains records of relationships between items in the two tables. The records each contain 2 foreign keys, one for each of the two tables that have the many-to-many relationship, as well as any other information that relates to the relationship but not to either individual record.
 
 ## Project Set Up
 
