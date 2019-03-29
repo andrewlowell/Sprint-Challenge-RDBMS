@@ -21,7 +21,7 @@ server.post('/api/projects', (req, res) => {
         res.status(201).json(p);
       })
       .catch(err => {
-        console.log(err)
+        // console.log(err)
         res.status(500).json({ message: "There was an error while saving the project to the database" });
       });
   }
@@ -44,7 +44,7 @@ server.post('/api/actions', (req, res) => {
         res.status(201).json(a);
       })
       .catch(err => {
-        console.log(err)
+        // console.log(err)
         res.status(500).json({ message: "There was an error while saving the action to the database" });
       });
   }
@@ -53,16 +53,16 @@ server.post('/api/actions', (req, res) => {
 server.get('/api/projects/:id', (req, res) => {
   model.getProject(req.params.id)
     .then(resProject => {
-      console.log('get project', resProject);
+      // console.log('get project', resProject);
       let projectWithActions = {...resProject};
       model.getProjectActions(req.params.id)
         .then(resActions => {
-          console.log('get project actions', resActions)
+          // console.log('get project actions', resActions)
           projectWithActions.actions = resActions;
           res.status(200).json(projectWithActions);
         })
         .catch(err => {
-          console.log('get actions', err);
+          // console.log('get actions', err);
           res.status(500).json({ message: "Something went wrong." })
         });
     })
