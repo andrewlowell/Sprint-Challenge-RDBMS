@@ -4,9 +4,13 @@ module.exports = {
   addProject,
   addAction,
   getProject,
-  getProjectActions
+  getProjectActions,
+  getProjects,
+  getActions,
+  updateProject
 };
 
+// *** MVP
 function addProject(project) {
   return db('projects')
     .insert(project);
@@ -23,4 +27,17 @@ function getProject(id) {
 function getProjectActions(id) {
   return db('actions')
     .where({ project_id: id });
+}
+
+// *** Extra
+function getProjects() {
+  return db('projects');
+}
+function getActions() {
+  return db('actions');
+}
+function updateProject(id, update) {
+  return db('projects')
+    .where({ id: id })
+    .update(update);
 }

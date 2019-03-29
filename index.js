@@ -58,17 +58,49 @@ server.get('/api/projects/:id', (req, res) => {
       model.getProjectActions(req.params.id)
         .then(resActions => {
           // console.log('get project actions', resActions)
-          projectWithActions.actions = resActions;
+          let newActions = resActions;
+          resActions.forEach(a => {
+            delete a.project_id;
+          });
+          projectWithActions.actions = newActions;
           res.status(200).json(projectWithActions);
         })
         .catch(err => {
           // console.log('get actions', err);
-          res.status(500).json({ message: "Something went wrong." })
+          res.status(500).json({ message: "Something went wrong." });
         });
     })
     .catch(err => {
       res.status(404).json({ message: "The project with the specified ID does not exist." });
     });
+})
+
+server.get('/api/projects', (req, res) => {
+  model.getProjects()
+    .then(projects => {
+      res.status(200).json(projects);
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Something went wrong." });
+    })
+})
+server.get('/api/actions', (req, res) => {
+  model.getActions()
+    .then(actions => {
+      res.status(200).json(actions);
+    })
+    .catch(err => {
+      res.status(500).json({ message: "Something went wrong." });
+    })
+})
+server.put('/api/projects/:id', (req, res) => {
+  model.updateProject(req.params.id, req.body)
+    .then(result => {
+      res.status(201).json({ message: "Success!" });
+    })
+    .catch(err => {
+      res.status(404).json({ message: "Failure :(" })
+    })
 })
 
 server.listen(5555, () =>
